@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#3B2418">
+<title>Desafio do Café &amp; Logística</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+  <!-- TELA INICIAL -->
+  <section id="tela-inicio" class="tela card hero">
+    <p class="icones" aria-hidden="true">☕ 🚢 ⚓ 📦 🗺️</p>
+    <h1>DESAFIO DO CAFÉ &amp; LOGÍSTICA</h1>
+    <p class="sub">Você conhece o caminho do café brasileiro até o mundo?</p>
+    <svg class="ilustra" viewBox="0 0 320 170" role="img" aria-label="Grãos de café e um navio cargueiro no mar">
+      <circle cx="262" cy="38" r="22" fill="#D6A756"/>
+      <g fill="#6F4E37" stroke="#F4E9D8" stroke-width="2" stroke-linecap="round">
+        <ellipse cx="60" cy="48" rx="22" ry="31" transform="rotate(25 60 48)"/>
+        <ellipse cx="118" cy="30" rx="16" ry="23" transform="rotate(-20 118 30)"/>
+      </g>
+      <g fill="none" stroke="#F4E9D8" stroke-width="3" stroke-linecap="round">
+        <path d="M50 24 q22 22 4 48"/><path d="M112 10 q-14 18 8 40"/>
+      </g>
+      <rect x="215" y="72" width="34" height="34" fill="#F4E9D8"/>
+      <rect x="224" y="60" width="10" height="12" fill="#D6A756"/>
+      <rect x="62" y="84" width="34" height="22" fill="#D6A756"/>
+      <rect x="98" y="84" width="34" height="22" fill="#54734B"/>
+      <rect x="134" y="84" width="34" height="22" fill="#F4E9D8"/>
+      <rect x="170" y="84" width="34" height="22" fill="#D6A756"/>
+      <rect x="80" y="62" width="34" height="22" fill="#54734B"/>
+      <rect x="116" y="62" width="34" height="22" fill="#6F4E37"/>
+      <path d="M40 106 h224 l-22 30 H64z" fill="#F4E9D8"/>
+      <path d="M0 140 q20-12 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 V170 H0z" fill="#54734B"/>
+    </svg>
+    <p class="texto">Teste seus conhecimentos sobre produção, transporte, armazenamento e exportação do café. Responda ao desafio e descubra se você merece conquistar nosso brinde!</p>
+    <button id="btn-comecar" class="btn" type="button">COMEÇAR DESAFIO</button>
+    <p class="info"><span id="info-n">5</span> perguntas • Resultado imediato</p>
+    <p class="info">Desafio gratuito e sem cadastro.</p>
+  </section>
+
+  <!-- TELA DO QUIZ -->
+  <section id="tela-quiz" class="tela card" hidden>
+    <div class="topo"><strong id="q-num"></strong><span id="q-tema" class="chip"></span></div>
+    <div id="barra-wrap" class="barra" role="progressbar" aria-label="Progresso do quiz" aria-valuemin="0" aria-valuemax="5" aria-valuenow="1"><div id="barra"></div></div>
+    <h2 id="q-texto" tabindex="-1"></h2>
+    <div id="opcoes" role="radiogroup" aria-labelledby="q-texto"></div>
+    <p id="erro" class="erro" role="alert" hidden></p>
+    <div id="feedback" class="feedback" role="status" hidden></div>
+    <button id="btn-confirmar" class="btn" type="button">CONFIRMAR RESPOSTA</button>
+    <button id="btn-proxima" class="btn verde" type="button" hidden>PRÓXIMA PERGUNTA</button>
+  </section>
+
+  <!-- TELA DE RESULTADO -->
+  <section id="tela-resultado" class="tela card resultado" hidden>
+    <p id="r-emoji" class="grande" aria-hidden="true"></p>
+    <h2 id="r-titulo" tabindex="-1"></h2>
+    <p id="r-msg"></p>
+    <dl class="placar">
+      <div><dt>Pontuação</dt><dd id="r-pontos"></dd></div>
+      <div><dt>Acertos</dt><dd id="r-acertos"></dd></div>
+      <div><dt>Aproveitamento</dt><dd id="r-pct"></dd></div>
+    </dl>
+    <p id="r-brinde" class="aviso"></p>
+    <p class="aviso-fixo"><strong>Importante:</strong> esta tela mostra apenas a sua pontuação e não garante o brinde sozinha. Mostre-a ao responsável pelo estande, que valida o resultado e controla os brindes disponíveis.</p>
+    <button id="btn-jogar" class="btn" type="button">JOGAR NOVAMENTE</button>
+  </section>
+
+  <!-- ÁREA DO ESTANDE (acesse com #admin no final do endereço) -->
+  <section id="tela-admin" class="tela" hidden>
+    <div class="card">
+      <h2>Área do estande: QR Code</h2>
+      <label for="url">Endereço público do quiz</label>
+      <input id="url" type="url" inputmode="url" placeholder="https://seunome.github.io/desafio-cafe/" autocomplete="off">
+      <button id="btn-gerar" class="btn" type="button">GERAR QR CODE</button>
+      <p id="aviso-url" class="aviso" role="status" hidden></p>
+      <div id="qr-grande" class="qr-grande" aria-label="QR Code do quiz"></div>
+      <div class="linha">
+        <button id="btn-baixar" class="btn verde" type="button">BAIXAR PNG</button>
+        <button id="btn-copiar" class="btn claro" type="button">COPIAR ENDEREÇO</button>
+      </div>
+      <p id="msg-admin" class="info" role="status"></p>
+      <h3>Antes de imprimir</h3>
+      <ol>
+        <li>Publique o site e cole aqui a URL pública (não use localhost).</li>
+        <li>Abra a câmera de <strong>outro celular, com Wi-Fi desligado</strong>, e escaneie o QR Code na tela.</li>
+        <li>Confira se o quiz abre e funciona até o resultado.</li>
+        <li>Só então imprima o banner.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Prévia do banner (2:3)</h2>
+      <div id="banner">
+        <div class="bn">
+          <h3 class="bn-titulo">DESAFIO DO CAFÉ &amp; LOGÍSTICA</h3>
+          <p class="bn-chamada">Você conhece o caminho do café até o mundo?</p>
+          <div id="qr-banner" class="qr-banner"><span class="vazio">Gere o QR Code acima</span></div>
+          <ol class="bn-passos">
+            <li>Escaneie o QR Code.</li>
+            <li>Responda às <span class="n-perg">5</span> perguntas.</li>
+            <li>Acerte pelo menos <span id="banner-min">4</span> e classifique-se para o brinde!</li>
+          </ol>
+          <p class="bn-final">ACEITE O DESAFIO E TESTE SEUS CONHECIMENTOS!</p>
+        </div>
+      </div>
+      <button id="btn-imprimir" class="btn" type="button">IMPRIMIR BANNER</button>
+      <p class="info">Na janela de impressão, ative “Gráficos de segundo plano” para manter as cores.</p>
+      <a class="voltar" href="#">← Voltar ao quiz</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Biblioteca de QR Code: qrcodejs 1.0.0 (cdnjs). Requer internet na área do estande. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
